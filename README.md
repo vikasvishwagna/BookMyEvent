@@ -95,7 +95,7 @@ Frontend will run on http://localhost:5173
 
 ## Accessing the App
 
-Open your browser at http://localhost:5173.
+Open your browser at http://localhost:5173
 
 Sign up for a new account or log in.
 
