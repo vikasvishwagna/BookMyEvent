@@ -4,7 +4,9 @@ import Event from "../models/Event.js";
 
 export const createEvent = async (req, res) => {
   try {
-    const { title, description, date, location, capacity, image } = req.body;
+    const { title, description, date, location, capacity } = req.body;
+
+    const imageUrl = req.file ? req.file.path : null;
 
     // 1. Validate input
     if (!title || !description || !date || !location || !capacity) {
@@ -18,7 +20,7 @@ export const createEvent = async (req, res) => {
       date,
       location,
       capacity,
-      image,
+      image: imageUrl,
       createdBy: req.user._id,
       attendees: []
     });
@@ -29,6 +31,7 @@ export const createEvent = async (req, res) => {
       event
     });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Server error" });
   }
 };

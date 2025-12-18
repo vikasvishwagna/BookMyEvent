@@ -2,11 +2,15 @@ import express from "express";
 import protect from "../middleware/authMiddleware.js";
 import { createEvent, getAllEvents, updateEvent, deleteEvent, rsvpEvent, unrsvpEvent,getMyEvents,
   getJoinedEvents } from "../controllers/eventController.js";
+  import upload from "../middleware/multer.js";
 
 
 const router = express.Router();
 
-router.post("/", protect, createEvent);
+// router.post("/", protect, createEvent);
+
+router.post("/",protect,
+  upload.single("image"), createEvent);
 router.get("/", getAllEvents);
 router.put("/:id", protect, updateEvent);
 router.delete("/:id", protect, deleteEvent);
